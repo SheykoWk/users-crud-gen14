@@ -63,6 +63,43 @@ app.post('/users', (req, res) => {
     res.status(201).json(userDB)
 })
 
+// todo : Delete Update
+
+app.delete('/users/:id', (req, res) => {
+    const id = Number(req.params.id)
+    const index = userDB.findIndex(item => item.id === id)
+
+    if(index !== -1){
+        userDB.splice(index, 1)
+        res.status(204).json()
+    }
+    res.status(400).json({message: 'Invalid ID'})
+})
+
+app.put('/users/:id', (req, res) => {
+    const id = Number(req.params.id)
+    const data = req.body;
+    const index = userDB.findIndex(item => item.id === id)
+
+    if(index === -1){
+        res.status(400).json({message: 'Invalid ID'})
+    }
+    if(data.name && data.age && data.email && data.country && data.phone){
+        userDB[index] = {
+            id,
+            name: data.name,
+            age: data.age,
+            email: data.email,
+            country: data.country,
+            phone: data.phone
+        }
+        res.status(200).json(userDB)
+    } else {
+        res.status(400).json({message: 'Missing data'})
+    }
+});
+
+
 
 app.listen(8000, () =>{
     console.log('Server started at port 8000')
