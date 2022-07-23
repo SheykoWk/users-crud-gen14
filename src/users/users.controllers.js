@@ -1,14 +1,25 @@
-const userDB = [];
+const userDB = [
+  {
+    id: 1,
+    name: "",
+    age: 20,
+    email: "",
+    country: "",
+    phone: "",
+  },
+];
 /*
-    {
-        id: 1,
-        name: "",
-        age: 20,
-        email: "",
-        country: "",
-        phone: ""
-    }
-*/
+ *    {
+ *        id: 1,
+ *        name: "",
+ *        age: 20,
+ *        email: "",
+ *        country: "",
+ *        phone: ""
+ *    }
+ */
+
+//? El controlador para retornar todos mis usuarios
 const getAllUsers = () => {
   return userDB;
 };
@@ -39,6 +50,13 @@ const createUser = (userObj) => {
     country: userObj.country,
     phone: userObj.phone,
   };
-  userDB.push(newUser)
-  return newUser
+  userDB.push(newUser);
+  return newUser;
+};
+// TODO : hacer controladores de Delete y update
+
+module.exports = {
+  getAllUsers,
+  getUserById,
+  createUser,
 };
