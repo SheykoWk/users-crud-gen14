@@ -2,18 +2,6 @@ const express = require("express");
 
 const app = express();
 
-const userDB = [];
-/*
-    {
-        id: 1,
-        name: "",
-        age: 20,
-        email: "",
-        country: "",
-        phone: ""
-    }
-*/
-
 app.use(express.json());
 
 app.use("/hola", (req, res) => {
