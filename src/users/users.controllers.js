@@ -55,8 +55,30 @@ const createUser = (userObj) => {
 };
 // TODO : hacer controladores de Delete y update
 
+const deleteUser = (id) => {
+  const index = userDB.findIndex((item) => item.id === id);
+  if (index !== -1){
+    userDB.splice(index, 1)
+    return true
+  }
+  return false
+}
+
+const editUser = (id, data) => {
+  const index = userDB.findIndex((item) => item.id === id);
+  if (index !== -1){
+    userDB[index] = data
+    return userDB[index]
+  } else {
+    createUser(data)
+    return userDB.at(-1)
+  }
+}
+
 module.exports = {
   getAllUsers,
   getUserById,
   createUser,
+  deleteUser,
+  editUser
 };
